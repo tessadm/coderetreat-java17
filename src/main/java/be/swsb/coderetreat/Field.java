@@ -20,11 +20,11 @@ public class Field {
         return 0;
     }
 
-    private int getMaxX() {
+    public int getMaxX() {
         return WIDTH -1;
     }
 
-    private int getMaxY() {
+    public int getMaxY() {
         return HEIGHT -1;
     }
 }

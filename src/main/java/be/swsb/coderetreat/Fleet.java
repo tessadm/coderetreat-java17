@@ -6,9 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toSet;
+
 public class Fleet {
     private final Set<Ship> ships;
-    private final Field field = new Field(); // todo: lijkt niet logisch dat een fleet een field heeft, eerder omgekeerd?
+    private final Field field = new Field();
 
     Fleet(Ship... ships) {
         this.ships = Set.of(ships);
@@ -18,6 +20,23 @@ public class Fleet {
     private void validate() {
         shipsCannotOverlap();
         shipsCannotBeOutsideBorders();
+        // todo: other constraints: no duplicate ships, of every type 1 ship,...?
+    }
+
+    public void receiveShot(Position position) {
+        ships.forEach(ship -> ship.receiveShot(position));
+    }
+
+    public Stream<Position> getOccupiedPositions() {
+        return ships.stream().flatMap(Ship::getOccupiedPositions);
+    }
+
+    public Set<Ship> getShipsHit() {
+        return ships.stream().filter(Ship::isHit).collect(toSet());
+    }
+
+    public Field getField() {
+        return field;
     }
 
     private void shipsCannotOverlap() {
@@ -34,9 +53,5 @@ public class Fleet {
         if ( occupiedPositions.anyMatch(field::isOutsideField)) {
             throw new ValidationException("Ships outside the borders detected");
         };
-    }
-
-    private Stream<Position> getOccupiedPositions() {
-        return ships.stream().flatMap(Ship::getOccupiedPositions);
     }
 }

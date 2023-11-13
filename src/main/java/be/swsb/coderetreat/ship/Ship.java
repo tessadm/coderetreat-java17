@@ -3,14 +3,14 @@ package be.swsb.coderetreat.ship;
 import be.swsb.coderetreat.Direction;
 import be.swsb.coderetreat.Position;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 public abstract class Ship {
     private final int length;
     private final Position startPosition;
     private final Direction direction;
+    private final Set<Position> hits = new HashSet<>();
 
     public Ship(
             int length,
@@ -27,5 +27,19 @@ public abstract class Ship {
             positions.add(direction.getNextPosition(positions.get(positions.size() -1)));
         }
         return positions.stream();
+    }
+
+    public Stream<Position> getHits() {
+        return hits.stream();
+    }
+
+    public boolean isHit() {
+        return getHits().findAny().isPresent();
+    }
+
+    public void receiveShot(Position position) {
+        if (getOccupiedPositions().anyMatch(occupied -> Objects.equals(occupied, position))) {
+            hits.add(position);
+        }
     }
 }

@@ -36,4 +36,18 @@ public class ShipTest {
                 );
 
     }
+
+    @Test
+    void receiveShot_whenHit_addsPositionToHits() {
+        Battleship ship = new Battleship(new Position(2, 1), HORIZONTAL);
+        ship.receiveShot(new Position(3,1));
+        assertThat(ship.getHits()).containsExactly(new Position(3,1));
+    }
+
+    @Test
+    void receiveShot_whenNotHit_doesNothing() {
+        Battleship ship = new Battleship(new Position(2, 1), HORIZONTAL);
+        ship.receiveShot(new Position(3,2));
+        assertThat(ship.getHits()).isEmpty();
+    }
 }

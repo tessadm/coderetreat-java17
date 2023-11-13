@@ -65,4 +65,39 @@ public class FleetTest {
             }
         }
     }
+
+    @Nested
+    class FireShot {
+        @Test
+        void fire_miss_doesNothing() {
+            Fleet fleet = new Fleet(
+                    new Carrier(new Position(0, 0), HORIZONTAL),
+                    new Battleship(new Position(1, 2), VERTICAL),
+                    new Destroyer(new Position(7, 3), HORIZONTAL),
+                    new Submarine(new Position(6, 5), VERTICAL),
+                    new PatrolBoat(new Position(8, 9), HORIZONTAL)
+            );
+
+            fleet.receiveShot(new Position(0,5));
+
+            assertThat(fleet.getShipsHit()).isEmpty();
+        }
+
+        @Test
+        void fire_hit_addsShipsToShipsHit() {
+            Battleship battleship = new Battleship(new Position(1, 2), VERTICAL);
+            Fleet fleet = new Fleet(
+                    new Carrier(new Position(0, 0), HORIZONTAL),
+                    battleship,
+                    new Destroyer(new Position(7, 3), HORIZONTAL),
+                    new Submarine(new Position(6, 5), VERTICAL),
+                    new PatrolBoat(new Position(8, 9), HORIZONTAL)
+            );
+
+            fleet.receiveShot(new Position(1,3));
+
+            assertThat(fleet.getShipsHit()).containsExactly(battleship);
+        }
+    }
+
 }
