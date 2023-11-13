@@ -6,6 +6,9 @@ import be.swsb.coderetreat.Position;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
+
 public abstract class Ship {
     private final int length;
     private final Position startPosition;
@@ -40,6 +43,16 @@ public abstract class Ship {
     public void receiveShot(Position position) {
         if (getOccupiedPositions().anyMatch(occupied -> Objects.equals(occupied, position))) {
             hits.add(position);
+        }
+    }
+
+    public Optional<String> print(Position position) {
+        if (hits.stream().anyMatch(hit -> hit.equals(position))) {
+            return of("🔥");
+        } else if (getOccupiedPositions().anyMatch(pos -> pos.equals(position))) {
+            return of("⛴️");
+        } else {
+            return empty();
         }
     }
 }

@@ -3,6 +3,7 @@ package be.swsb.coderetreat;
 import be.swsb.coderetreat.ship.Ship;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -53,5 +54,14 @@ public class Fleet {
         if ( occupiedPositions.anyMatch(field::isOutsideField)) {
             throw new ValidationException("Ships outside the borders detected");
         };
+    }
+
+    public String print(Position position) {
+        Optional<String> positionString = ships.stream()
+                .map(ship -> ship.print(position))
+                .filter(Optional::isPresent)
+                .findFirst()
+                .orElse(Optional.of("🟦"));
+        return positionString.get();
     }
 }

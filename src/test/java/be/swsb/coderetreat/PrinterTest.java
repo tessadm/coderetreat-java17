@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static be.swsb.coderetreat.Direction.HORIZONTAL;
 import static be.swsb.coderetreat.Direction.VERTICAL;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PrinterTest {
     @Test
@@ -19,6 +20,20 @@ public class PrinterTest {
 
         fleet.receiveShot(new Position(1,3));
 
-        new Printer().print(fleet);
+        String actual = Printer.print(fleet);
+
+        assertThat(actual).isEqualTo(
+                """
+                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
+                ⛴️🟦⛴️🔥⛴️⛴️🟦🟦🟦🟦
+                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
+                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
+                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
+                🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦
+                🟦🟦🟦🟦🟦⛴️⛴️⛴️🟦🟦
+                🟦🟦🟦⛴️🟦🟦🟦🟦🟦🟦
+                🟦🟦🟦⛴️🟦🟦🟦🟦🟦⛴️
+                🟦🟦🟦⛴️🟦🟦🟦🟦🟦⛴️
+                """);
     }
 }
