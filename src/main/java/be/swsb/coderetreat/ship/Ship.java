@@ -50,9 +50,11 @@ public abstract class Ship {
         if (hits.stream().anyMatch(hit -> hit.equals(position))) {
             return of("🔥");
         } else if (getOccupiedPositions().anyMatch(pos -> pos.equals(position))) {
-            return of("⛴️");
+            return of(getStringReprestentation());
         } else {
             return empty();
         }
     }
+
+    public abstract String getStringReprestentation();
 }

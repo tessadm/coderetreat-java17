@@ -8,4 +8,10 @@ public class Battleship extends Ship {
     public Battleship(Position startPosition, Direction direction) {
         super(4, startPosition, direction);
     }
+
+    @Override
+    public String getStringReprestentation() {
+        return "🔫"
+        ;
+    }
 }

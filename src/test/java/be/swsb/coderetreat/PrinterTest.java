@@ -18,22 +18,22 @@ public class PrinterTest {
                 new PatrolBoat(new Position(8, 9), HORIZONTAL)
         );
 
-        fleet.receiveShot(new Position(1,3));
+        fleet.receiveShot(new Position(1, 3));
 
         String actual = Printer.print(fleet);
 
         assertThat(actual).isEqualTo(
                 """
-                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
-                ⛴️🟦⛴️🔥⛴️⛴️🟦🟦🟦🟦
-                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
-                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
-                ⛴️🟦🟦🟦🟦🟦🟦🟦🟦🟦
-                🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦
-                🟦🟦🟦🟦🟦⛴️⛴️⛴️🟦🟦
-                🟦🟦🟦⛴️🟦🟦🟦🟦🟦🟦
-                🟦🟦🟦⛴️🟦🟦🟦🟦🟦⛴️
-                🟦🟦🟦⛴️🟦🟦🟦🟦🟦⛴️
-                """);
+              🚢🟦🟦🟦🟦🟦🟦🟦🟦🟦
+              🚢🟦🔫🔥🔫🔫🟦🟦🟦🟦
+              🚢🟦🟦🟦🟦🟦🟦🟦🟦🟦
+              🚢🟦🟦🟦🟦🟦🟦🟦🟦🟦
+              🚢🟦🟦🟦🟦🟦🟦🟦🟦🟦
+              🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦
+              🟦🟦🟦🟦🟦🤿🤿🤿🟦🟦
+              🟦🟦🟦🧨🟦🟦🟦🟦🟦🟦
+              🟦🟦🟦🧨🟦🟦🟦🟦🟦🛥️
+              🟦🟦🟦🧨🟦🟦🟦🟦🟦🛥️
+              """);
     }
 }

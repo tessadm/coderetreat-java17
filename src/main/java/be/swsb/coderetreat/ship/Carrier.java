@@ -8,4 +8,9 @@ public class Carrier extends Ship {
     public Carrier(Position startPosition, Direction direction) {
         super(5, startPosition, direction);
     }
+
+    @Override
+    public String getStringReprestentation() {
+        return "🚢";
+    }
 }

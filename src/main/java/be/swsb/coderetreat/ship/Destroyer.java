@@ -8,4 +8,9 @@ public class Destroyer extends Ship {
     public Destroyer(Position startPosition, Direction direction) {
         super(3, startPosition, direction);
     }
+
+    @Override
+    public String getStringReprestentation() {
+        return "🧨";
+    }
 }

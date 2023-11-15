@@ -8,4 +8,9 @@ public class PatrolBoat extends Ship {
     public PatrolBoat(Position startPosition, Direction direction) {
         super(2, startPosition, direction);
     }
+
+    @Override
+    public String getStringReprestentation() {
+        return "🛥️";
+    }
 }
