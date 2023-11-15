@@ -56,5 +56,9 @@ public abstract class Ship {
         }
     }
 
+    public boolean isSunken() {
+        return hits.size() == length;
+    }
+
     public abstract String getStringReprestentation();
 }
