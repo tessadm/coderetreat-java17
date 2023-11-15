@@ -2,6 +2,7 @@ package be.swsb.coderetreat;
 
 public class Printer {
 
+    // todo: print sunken ship differently
     public static String print(Fleet fleet) {
         StringBuilder stringBuilder = new StringBuilder();
 

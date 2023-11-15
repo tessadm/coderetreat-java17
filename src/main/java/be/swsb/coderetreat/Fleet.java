@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toSet;
 
+// todo: has (too?) many responsibilities: validating fleets, receiving shots and some logic to calculate states, however not too complicated altogether
 public class Fleet {
     private final Set<Ship> ships;
     private final Field field = new Field();
