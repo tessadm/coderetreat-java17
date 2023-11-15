@@ -13,4 +13,8 @@ public class Game {
     public Fleet getFleetOfPlayer(Player player) {
         return fleets.get(player);
     }
+
+    public void shootOn(Player player, Position position) {
+        fleets.get(player).receiveShot(position);
+    }
 }
