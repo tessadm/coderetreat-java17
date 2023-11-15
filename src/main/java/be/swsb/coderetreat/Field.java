@@ -1,5 +1,6 @@
 package be.swsb.coderetreat;
 
+// todo: convert to record?
 public class Field {
 
     private final int WIDTH = 10;
