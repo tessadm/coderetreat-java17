@@ -24,8 +24,8 @@ public class Fleet {
         // todo: other constraints: no duplicate ships, of every type 1 ship,...?
     }
 
-    public void receiveShot(Position position) {
-        ships.forEach(ship -> ship.receiveShot(position));
+    public Field getField() {
+        return field;
     }
 
     public Stream<Position> getOccupiedPositions() {
@@ -36,24 +36,12 @@ public class Fleet {
         return ships.stream().filter(Ship::isHit).collect(toSet());
     }
 
-    public Field getField() {
-        return field;
+    public boolean allShipsAreSunken() {
+        return ships.stream().allMatch(Ship::isSunken);
     }
 
-    private void shipsCannotOverlap() {
-        Stream<Position> occupiedPositions = getOccupiedPositions();
-
-        if (!occupiedPositions.allMatch(new HashSet<>()::add)) {
-            throw new ValidationException("Ships on same location detected");
-        }
-    }
-
-    private void shipsCannotBeOutsideBorders() {
-        Stream<Position> occupiedPositions = getOccupiedPositions();
-
-        if ( occupiedPositions.anyMatch(field::isOutsideField)) {
-            throw new ValidationException("Ships outside the borders detected");
-        };
+    public void receiveShot(Position position) {
+        ships.forEach(ship -> ship.receiveShot(position));
     }
 
     public String print(Position position) {
@@ -63,5 +51,21 @@ public class Fleet {
                 .findFirst()
                 .orElse(Optional.of("🟦"));
         return positionString.get();
+    }
+
+    private void shipsCannotOverlap() {
+        Stream<Position> occupiedPositions = getOccupiedPositions();
+
+        if (!occupiedPositions.allMatch(new HashSet<>()::add)) {
+            throw new IllegalArgumentException("Ships on same location detected");
+        }
+    }
+
+    private void shipsCannotBeOutsideBorders() {
+        Stream<Position> occupiedPositions = getOccupiedPositions();
+
+        if ( occupiedPositions.anyMatch(field::isOutsideField)) {
+            throw new IllegalArgumentException("Ships outside the borders detected");
+        };
     }
 }
