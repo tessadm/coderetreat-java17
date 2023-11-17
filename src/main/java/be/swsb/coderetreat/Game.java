@@ -3,8 +3,6 @@ package be.swsb.coderetreat;
 import java.util.HashMap;
 import java.util.Map;
 
-// todo: think about refactoring?
-// todo: if wanted - restrict to 2 players. Now more are allowed and player that is the first to kill another player wins
 public class Game {
     Map<Player, Fleet> fleets = new HashMap<>();
     Player playerWhoFiredLast = null;

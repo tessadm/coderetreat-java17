@@ -10,12 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class GameTest {
-    // players toevoegen ✅
-    // fleets toevoegen per player ✅
-    // when game is started, fleets can no longer change
-    // laat players shots firen ✅
-    // beheert wiens beurt het is ✅
-    // weet wanneer het spel gedaan is ✅
 
     @Test
     void canAddFleetForPlayer() {

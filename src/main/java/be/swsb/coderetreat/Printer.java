@@ -8,8 +8,8 @@ public class Printer {
 
         for (int i = 0; i <= fleet.getField().getMaxX(); i++) {
             for (int j = 0; j <= fleet.getField().getMaxY(); j++) {
-                int x = i;
-                int y = j;
+                int y = i;
+                int x = j;
                 stringBuilder.append(fleet.print(new Position(x,y)));
             }
             stringBuilder.append("\n");

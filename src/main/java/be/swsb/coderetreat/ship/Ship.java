@@ -41,7 +41,7 @@ public abstract class Ship {
     }
 
     public void receiveShot(Position position) {
-        if (getOccupiedPositions().anyMatch(occupied -> Objects.equals(occupied, position))) {
+        if (getOccupiedPositions().anyMatch(occupied -> occupied.equals(position))) {
             hits.add(position);
         }
     }
