@@ -45,12 +45,11 @@ public class Fleet {
     }
 
     public String print(Position position) {
-        Optional<String> positionString = ships.stream()
+        return ships.stream()
                 .map(ship -> ship.print(position))
-                .filter(Optional::isPresent)
+                .flatMap(Optional::stream)
                 .findFirst()
-                .orElse(Optional.of("🟦"));
-        return positionString.get();
+                .orElse("🟦");
     }
 
     private void shipsCannotOverlap() {
